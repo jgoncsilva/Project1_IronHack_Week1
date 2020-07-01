@@ -82,8 +82,8 @@ game_room = {
 }
 
 bedroom_1 = {
-    "name" : "door b",
-    "type" : "door",
+    "name" : "Bedroom 1",
+    "type" : "room",
 }
 
 bedroom_2 = {
