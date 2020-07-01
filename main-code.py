@@ -31,7 +31,7 @@ door_c = {
 }
 
 door_d = {
-    "name": "door c",
+    "name": "door d",
     "type": "door",
 }
 
@@ -39,6 +39,12 @@ key_a = {
     "name": "key for door a",
     "type": "key",
     "target": door_a,
+}
+
+key_b = {
+    "name": "key for door b",
+    "type": "key",
+    "target": door_b,
 }
 
 key_c = {
@@ -58,10 +64,15 @@ piano = {
     "type": "furniture",
 }
 
-
 dining_table = {
     "name": "dining table",
     "type": "furniture",
+}
+
+queen_bed = {
+    "name": "queen bed",
+    "type": "furniture",
+    "description" : "So Sweet by beauty queen. But there's no time to sleep"
 }
 
 door_d = {
@@ -74,13 +85,23 @@ game_room = {
     "type": "room",
 }
 
+bedroom_1 = {
+    "name" : "door b",
+    "type" : "door",
+}
+
+dinning_table = {
+    "name": "dinning table",
+    "type": "furniture",
+}
+
 bedroom_2 = {
     "name": "Bedroom 2",
     "type": "room",
 }
 
 living_room = {
-    "name": "Bedroom 2",
+    "name": "living room",
     "type": "room",
 }
 
@@ -97,9 +118,15 @@ all_doors = [door_a, door_b, door_c, door_d]
 object_relations = {
     "game room": [couch, piano, door_a],
     "living room": [dining_table, door_c, door_d],
+    "couch": [],
     "piano": [key_a],
     "outside": [door_d],
     "dining table": [],
+    "bedroom_1": [queen_bed, door_a, door_b, door_c],
+    "bedroom_2": [dresser, double_bed, door_b],
+    "double_bed": [key_c],
+    "dresser": [key_d],
+    "queen_bed" : [key_b],
     "door a": [game_room, bedroom_1],
     "door b": [bedroom_1, bedroom_2],
     "door c": [bedroom_1, living_room],

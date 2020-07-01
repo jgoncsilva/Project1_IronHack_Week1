@@ -1,0 +1,26 @@
+1) Definição de quartos
+ Task 1 - Criar quartos 
+  - Verificar quantos quartos
+  Task 2 - Criar objetos
+  - Chaves 
+  - Portas (door_ a já criada)
+  - Moveis (furniture)
+
+(Ideia - Criar novos objetos que levam ate a chave)
+- Jorge - (Criar uma chave que abre um cofre com password?) '-' Porta de saida
+
+2) Criar relação entre os objetos 
+
+3) Alterar a WIN condition
+ Win condition = Abrir a porta D 
+
+
+
+1- STEP 
+MVP - 
+
+Idea de Morrer é boa!!!!
+
+- Ao examinar um objeto aparecer uma messagem! TOcas-te em coisa venenosa
+- Cogumelo  - CUra 
+- Veneno - Cobra 
