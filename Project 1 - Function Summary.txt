@@ -1,0 +1,29 @@
+Project 1 - Functions Summary
+
+def start_game():
+    calls the play_room function for the current game state
+    
+
+def play_room(room):
+    check win condition/
+    show options - explore or examine
+    
+    
+def explore_room(room):
+    list all items in this room
+    
+    
+def get_next_room_of_door(door, current_room):
+    check which room this door leads to
+    
+    returns: room object
+    
+
+def examine_item(item_name):
+    check if the item is the current room
+    if item is a door, 
+        tells the player if he has the key and ask to go to next door if yes
+    if item is not a door,
+        checks if it contains keys. collect the key
+    update the game_state
+    
