@@ -31,7 +31,7 @@ door_c = {
 }
 
 door_d = {
-    "name": "door c",
+    "name": "door d",
     "type": "door",
 }
 
@@ -60,15 +60,10 @@ piano = {
 
 
 dinning_table = {
-    "name": "dinning table"
+    "name": "dinning table",
     "type": "furniture",
 }
 
-
-door_d = {
-    "name": "door d",
-    "type": "door",
-}
 
 game_room = {
     "name": "game room",
@@ -84,9 +79,9 @@ outside = {
   "name": "outside"
 }
 
-all_rooms = [game_room, outside]
+all_rooms = [game_room, bedroom1, bedroom2, outside]
 
-all_doors = [door_a]
+all_doors = [door_a, door_b, door_c, door_d]
 
 # define which items/rooms are related
 
