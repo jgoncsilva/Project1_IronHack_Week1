@@ -82,12 +82,12 @@ game_room = {
 }
 
 bedroom_1 = {
-    "name" : "Bedroom 1",
+    "name" : "bedroom 1",
     "type" : "room",
 }
 
 bedroom_2 = {
-    "name": "Bedroom 2",
+    "name": "bedroom 2",
     "type": "room",
 }
 
@@ -113,11 +113,11 @@ object_relations = {
     "piano": [key_a],
     "outside": [door_d],
     "dining table": [],
-    "bedroom_1": [queen_bed, door_a, door_b, door_c],
-    "bedroom_2": [dresser, double_bed, door_b],
-    "double_bed": [key_c],
+    "bedroom 1": [queen_bed, door_a, door_b, door_c],
+    "bedroom 2": [dresser, double_bed, door_b],
+    "double bed": [key_c],
     "dresser": [key_d],
-    "queen_bed" : [key_b],
+    "queen bed" : [key_b],
     "door a": [game_room, bedroom_1],
     "door b": [bedroom_1, bedroom_2],
     "door c": [bedroom_1, living_room],
@@ -228,7 +228,7 @@ def examine_item(item_name):
     if(output is None):
         print("The item you requested is not found in the current room.")
     
-    if(next_room and input("Do you want to go to the next room? Ener 'yes' or 'no'").strip() == 'yes'):
+    if(next_room and input("Do you want to go to the next room? Enter 'yes' or 'no'").strip() == 'yes'):
         play_room(next_room)
     else:
         play_room(current_room)
