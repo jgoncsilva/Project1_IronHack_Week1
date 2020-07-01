@@ -43,6 +43,31 @@ object_relations = {
     "door a": [game_room, outside]
 }
 
+bedroom_1 = {
+    "name": "bedroom 1",
+    "type": "room",
+    "Description": "Looks like a bedroom"
+}
+
+door_b = {
+    "name" : "door b",
+    "type" : "door",
+}
+
+key_b = {
+    "name": "key for door b",
+    "type": "furniture",
+    "description": "So Sweet my beauty queen. But there's no time to sleep"
+}
+
+door_c = {
+    "name": "door c",
+    "type": "door",
+    "Description": "Other door, keep moving "
+}
+
+
+}
 # define game state. Do not directly change this dict. 
 # Instead, when a new game starts, make a copy of this
 # dict and use the copy to store gameplay state. This 
