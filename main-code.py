@@ -21,7 +21,16 @@ piano = {
     "type": "furniture",
 }
 
+game_room = {
+    "name": "game room",
+    "type": "room",
+}
 
+outside = {
+  "name": "outside"
+}
+
+#Living Room 
 dinning_table = {
     "name": "dinning table"
     "type": "furniture",
@@ -33,14 +42,7 @@ door_d = {
     "type": "door",
 }
 
-game_room = {
-    "name": "game room",
-    "type": "room",
-}
 
-outside = {
-  "name": "outside"
-}
 
 all_rooms = [game_room, outside]
 
@@ -56,31 +58,6 @@ object_relations = {
     "door b": [bedroom_1, bedroom_2],
     "door c": [bedroom_1, living_room],
     "door d": [living_room, outside]
-}
-
-bedroom_1 = {
-    "name": "bedroom 1",
-    "type": "room",
-    "Description": "Looks like a bedroom"
-}
-
-door_b = {
-    "name" : "door b",
-    "type" : "door",
-}
-
-key_b = {
-    "name": "key for door b",
-    "type": "furniture",
-    "description": "So Sweet my beauty queen. But there's no time to sleep"
-}
-
-door_c = {
-    "name": "door c",
-    "type": "door",
-    "Description": "Other door, keep moving "
-}
-
 
 }
 # define game state. Do not directly change this dict. 
