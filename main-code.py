@@ -21,6 +21,18 @@ piano = {
     "type": "furniture",
 }
 
+
+dinning_table = {
+    "name": "dinning table"
+    "type": "furniture",
+}
+
+
+door_d = {
+    "name": "door d",
+    "type": "door",
+}
+
 game_room = {
     "name": "game room",
     "type": "room",
@@ -40,7 +52,10 @@ object_relations = {
     "game room": [couch, piano, door_a],
     "piano": [key_a],
     "outside": [door_a],
-    "door a": [game_room, outside]
+    "door a": [game_room, outside],
+    "door b": [bedroom_1, bedroom_2],
+    "door c": [bedroom_1, living_room],
+    "door d": [living_room, outside]
 }
 
 bedroom_1 = {
