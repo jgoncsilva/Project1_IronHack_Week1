@@ -25,11 +25,6 @@ piano = {
     "type": "furniture",
 }
 
-dining_table = {
-    "name": "dining table",
-    "type": "furniture",
-}
-
 queen_bed = {
     "name": "queen bed",
     "type": "furniture",
