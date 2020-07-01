@@ -108,7 +108,7 @@ all_doors = [door_a, door_b, door_c, door_d]
 
 object_relations = {
     "game room": [couch, piano, door_a],
-    "living room": [dining_table, door_c, door_d],
+    "living room": [dinning_table, door_c, door_d],
     "couch": [],
     "piano": [key_a],
     "outside": [door_d],
@@ -134,7 +134,6 @@ INIT_GAME_STATE = {
     "keys_collected": [],
     "target_room": outside
 }
-
 
 def linebreak():
     """
