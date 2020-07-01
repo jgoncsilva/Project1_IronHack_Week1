@@ -70,7 +70,7 @@ game_room = {
     "type": "room",
 }
 
-bedroom_2 {
+bedroom_2 = {
     "name": "Bedroom 2",
     "type": "room",
 }
@@ -79,7 +79,7 @@ outside = {
   "name": "outside"
 }
 
-all_rooms = [game_room, bedroom1, bedroom2, outside]
+all_rooms = [game_room, bedroom_1, bedroom_2, outside]
 
 all_doors = [door_a, door_b, door_c, door_d]
 
@@ -87,7 +87,10 @@ all_doors = [door_a, door_b, door_c, door_d]
 
 object_relations = {
     "game room": [couch, piano, door_a],
+    "bedroom_2": [dresser, double_bed, door_b],
     "piano": [key_a],
+    "double_bed": [key_c],
+    "dresser": [key_d],
     "outside": [door_a],
     "door a": [game_room, outside],
     "door b": [bedroom_1, bedroom_2],
