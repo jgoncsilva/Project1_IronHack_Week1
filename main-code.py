@@ -41,6 +41,11 @@ key_a = {
     "target": door_a,
 }
 
+key_b = {
+    "name": "key foor door b",
+    "type": "door",
+}
+
 key_c = {
     "name": "key for door c",
     "type": "key",
@@ -58,7 +63,26 @@ piano = {
     "type": "furniture",
 }
 
+queen_bed = {
+    "name": "queen bed",
+    "type": "furniture",
+    "description" : "So Sweet by beauty queen. But there's no time to sleep"
+}
 
+game_room = {
+    "name": "game room",
+    "type": "room",
+}
+
+outside = {
+  "name": "outside"
+}
+# Bedroomns
+bedroom_1 = {
+    "name" : "door b",
+    "type" : "door",
+}
+#Living Room 
 dinning_table = {
     "name": "dinning table",
     "type": "furniture",
@@ -69,6 +93,7 @@ game_room = {
     "name": "game room",
     "type": "room",
 }
+
 
 bedroom_2 = {
     "name": "Bedroom 2",
@@ -96,8 +121,8 @@ object_relations = {
     "door b": [bedroom_1, bedroom_2],
     "door c": [bedroom_1, living_room],
     "door d": [living_room, outside]
+    
 }
-
 # define game state. Do not directly change this dict. 
 # Instead, when a new game starts, make a copy of this
 # dict and use the copy to store gameplay state. This 
