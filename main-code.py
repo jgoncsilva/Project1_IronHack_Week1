@@ -5,8 +5,33 @@ couch = {
     "type": "furniture",
 }
 
+dresser = {
+    "name": "dresser",
+    "type": "furniture",
+}
+
+double_bed = {
+    "name": "double bed",
+    "type": "furniture",
+}
+
 door_a = {
     "name": "door a",
+    "type": "door",
+}
+
+door_b = {
+    "name": "door b",
+    "type": "door",
+}
+
+door_c = {
+    "name": "door c",
+    "type": "door",
+}
+
+door_d = {
+    "name": "door c",
     "type": "door",
 }
 
@@ -16,6 +41,18 @@ key_a = {
     "target": door_a,
 }
 
+key_c = {
+    "name": "key for door c",
+    "type": "key",
+    "target": door_c,
+}
+
+key_d = {
+    "name": "key for door d",
+    "type": "key",
+    "target": door_d,
+}
+
 piano = {
     "name": "piano",
     "type": "furniture",
@@ -23,6 +60,11 @@ piano = {
 
 game_room = {
     "name": "game room",
+    "type": "room",
+}
+
+bedroom_2 {
+    "name": "Bedroom 2",
     "type": "room",
 }
 
