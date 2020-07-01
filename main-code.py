@@ -158,7 +158,7 @@ def play_room(room):
     if(game_state["current_room"] == game_state["target_room"]):
         print("Congrats! You escaped the room!")
     else:
-        print("You are now in " + room["name"])
+        print("You are now in " + room["name"] + "\n")
         intended_action = input("What would you like to do? Type 'explore' or 'examine'?").strip()
         if intended_action == "explore":
             explore_room(room)
