@@ -59,11 +59,10 @@ piano = {
 }
 
 
-dinning_table = {
-    "name": "dinning table"
+dining_table = {
+    "name": "dining table",
     "type": "furniture",
 }
-
 
 door_d = {
     "name": "door d",
@@ -75,7 +74,12 @@ game_room = {
     "type": "room",
 }
 
-bedroom_2 {
+bedroom_2 = {
+    "name": "Bedroom 2",
+    "type": "room",
+}
+
+living_room = {
     "name": "Bedroom 2",
     "type": "room",
 }
@@ -84,17 +88,19 @@ outside = {
   "name": "outside"
 }
 
-all_rooms = [game_room, outside]
+all_rooms = [game_room, bedroom_1, bedroom_2, living_room, outside]
 
-all_doors = [door_a]
+all_doors = [door_a, door_b, door_c, door_d]
 
 # define which items/rooms are related
 
 object_relations = {
     "game room": [couch, piano, door_a],
+    "living room": [dining_table, door_c, door_d],
     "piano": [key_a],
-    "outside": [door_a],
-    "door a": [game_room, outside],
+    "outside": [door_d],
+    "dining table": [],
+    "door a": [game_room, bedroom_1],
     "door b": [bedroom_1, bedroom_2],
     "door c": [bedroom_1, living_room],
     "door d": [living_room, outside]
