@@ -1,5 +1,5 @@
 # define rooms and items
-
+#Objects
 couch = {
     "name": "couch",
     "type": "furniture",
@@ -15,6 +15,28 @@ double_bed = {
     "type": "furniture",
 }
 
+dinning_table = {
+    "name": "dinning table",
+    "type": "furniture",
+}
+
+piano = {
+    "name": "piano",
+    "type": "furniture",
+}
+
+dining_table = {
+    "name": "dining table",
+    "type": "furniture",
+}
+
+queen_bed = {
+    "name": "queen bed",
+    "type": "furniture",
+    "description" : "So Sweet by beauty queen. But there's no time to sleep"
+}
+
+# Main Doors
 door_a = {
     "name": "door a",
     "type": "door",
@@ -34,7 +56,7 @@ door_d = {
     "name": "door d",
     "type": "door",
 }
-
+#Main Keys 
 key_a = {
     "name": "key for door a",
     "type": "key",
@@ -58,28 +80,7 @@ key_d = {
     "type": "key",
     "target": door_d,
 }
-
-piano = {
-    "name": "piano",
-    "type": "furniture",
-}
-
-dining_table = {
-    "name": "dining table",
-    "type": "furniture",
-}
-
-queen_bed = {
-    "name": "queen bed",
-    "type": "furniture",
-    "description" : "So Sweet by beauty queen. But there's no time to sleep"
-}
-
-door_d = {
-    "name": "door d",
-    "type": "door",
-}
-
+#Main Bedrooms
 game_room = {
     "name": "game room",
     "type": "room",
@@ -88,11 +89,6 @@ game_room = {
 bedroom_1 = {
     "name" : "door b",
     "type" : "door",
-}
-
-dinning_table = {
-    "name": "dinning table",
-    "type": "furniture",
 }
 
 bedroom_2 = {
