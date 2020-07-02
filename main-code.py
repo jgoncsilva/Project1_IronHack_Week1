@@ -179,11 +179,12 @@ def examine_item(item_name):
 
     if (output is None):
         print("The item you requested is not found in the current room.")
-    if (next_room and input("Do you want to go to the next room? Enter 'yes' or 'no'").strip().lower() == 'yes'):
+    if next_room and input("Do you want to go to the next room? Enter 'yes' or 'no'").strip().lower() == 'yes':
         explore_room(next_room)
         play_room(next_room)
     else:
         play_room(current_room)
+
 
 
 def game_over():
