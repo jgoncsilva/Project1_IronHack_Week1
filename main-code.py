@@ -32,7 +32,6 @@ INIT_GAME_STATE = {
     "current_room": game_room,
     "keys_collected": [],
     "target_room": outside,
-    "is_the_game_over": False
 }
 
 
@@ -128,19 +127,19 @@ def examine_item(item_name):
 
             elif (item["type"] == "deadly"):
                 print('''you're dead\n  
-                                ____
-                                / . .\\
-                                \  ---<
-                                \  /
-                    __________/ /
-                    -=:___________/''')
+             ____
+            / . .\\
+            \  ---<
+             \  /
+   __________/ /
+-=:___________/''')
                 game_over()
 
 
             elif(item["type"] == "safe"):
                 print (output)
                 output = ""
-                if(input("Introduce the code to the safe ***: ").lower() == 'sos'):
+                if(input("Introduce the code to the safe ***: ").strip().lower() == 'sos'):
                     #if the code is correct
                     if(item["name"] in object_relations and len(object_relations[item["name"]])>0):                    
                         item_found = object_relations[item["name"]].pop()
@@ -152,13 +151,23 @@ def examine_item(item_name):
                     #if the code is not correct
                     output += "It is locked and the code is incorrect.\n"
 
+            elif(item["type"] == "bookcase"):
+                print(output + (item['description'] + "\n"))
+                output = ""
+                answer = input("What theme are you looking for?").strip().lower()
+                if(answer.count('morse') > 0):
+                    print(eng_to_morse_str)
+                elif(answer.count('cod') > 0):
+                    output += "You find a Cryptography book. You scan through the pages and land on a page about the origin of Morse Code.\n Time is running out. I need to get out of here.\n"
+                else:
+                    output += "No time for that. Time is running out. \n"
             else:
                 if (item["name"] in object_relations and len(object_relations[item["name"]]) > 0):
                     item_found = object_relations[item["name"]].pop()
                     game_state["keys_collected"].append(item_found)
                     output += "You find " + item_found["name"] + ".\n"
                 else:
-                    output += "There isn't anything interesting about it.\n"
+                    output += (item['description'] + "\n") if 'description' in item.keys() else "There isn't anything interesting about it.\n"
             print(output)
             break
 

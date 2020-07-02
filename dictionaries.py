@@ -18,7 +18,7 @@ double_bed = {
 dinning_table = {
     "name": "dinning table",
     "type": "furniture",
-    "description": "There is a paper on the table. You turn it over. There is a message\n ...---..."
+    "description": "There is a paper on the table. You turn it over. There is a message\n\t ...---..."
 }
 
 safe = {
@@ -28,8 +28,8 @@ safe = {
 
 bookcase = {
     "name": "bookcase",
-    "type": "furniture",
-    "description": "A bookcase full of books of all sorts of themes. Python for Beginners, Harry Potter, Lord of the Rings, 50 Shades of...",
+    "type": "bookcase",
+    "description": "It's full of books of all sorts of themes. Python for Beginners, Harry Potter, Code Breaking in the Pacific, 50 Shades of...",
 }
 
 piano = {
@@ -120,3 +120,22 @@ outside = {
 all_rooms = [game_room, bedroom_1, bedroom_2, living_room, outside]
 
 all_doors = [door_a, door_b, door_c, door_d]
+
+eng_to_morse = [{'a' : '.-', 'b' : '-...', 'c' : '-.-.', 'd' : '-..'},
+{'e' : '.', 'f' : '..-.', 'g' : '--.', 'h' : '....'},
+{'i' : '..', 'j' : '.---', 'k' : '-.-', 'l' : '.-..'},
+{'m' : '--', 'n' : '-.', 'o' : '---', 'p' : '.--.'},
+{'q' : '--.-', 'r' : '.-.', 's' : '...', 't' : '-'},
+{'u' : '..-', 'v' : '...-', 'w' : '.--', 'x' : '-..-'},
+{'y' : '-.--', 'z' : '--..'},
+{'.' : '.-.-.-', '?' : '..--..', ',' : '--..--', ' ' : '/'},
+]
+
+eng_to_morse_str = '''a  .-\t\t b  -...\t\t c  -.-.\t\t d  -..\n
+e  .\t\t f  ..-.\t\t g  --.\t\t\t h  ....\n
+i  ..\t\t j  .---\t\t k  -.-\t\t\t l  .-..\n
+m  --\t\t n  -.\t\t\t o  ---\t\t\t p  .--.\n
+q  --.-\t\t r  .-.\t\t\t s  ...\t\t\t t  -\n
+u  ..-\t\t v  ...-\t\t w  .--\t\t\t x  -..-\n
+y  -.--\t\t z  --..
+'''
