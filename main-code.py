@@ -1,5 +1,6 @@
+import copy
 # define rooms and items
-#Objects
+# Objects
 couch = {
     "name": "couch",
     "type": "furniture",
@@ -38,7 +39,7 @@ piano = {
 queen_bed = {
     "name": "queen bed",
     "type": "furniture",
-    "description" : "So Sweet by beauty queen. But there's no time to sleep"
+    "description": "So Sweet by beauty queen. But there's no time to sleep"
 }
 
 # Main Doors
@@ -61,7 +62,7 @@ door_d = {
     "name": "door d",
     "type": "door",
 }
-#Main Keys 
+# Main Keys
 key_a = {
     "name": "key for door a",
     "type": "key",
@@ -85,20 +86,25 @@ key_d = {
     "type": "key",
     "target": door_d,
 }
-#Main Bedrooms
+# Main Bedrooms
 game_room = {
     "name": "game room",
     "type": "room",
 }
 
 bedroom_1 = {
-    "name" : "bedroom 1",
-    "type" : "room",
+    "name": "bedroom 1",
+    "type": "room",
 }
 
 bedroom_2 = {
     "name": "bedroom 2",
     "type": "room",
+}
+
+snake = {
+    "name": "snake",
+    "type": "deadly"
 }
 
 living_room = {
@@ -107,7 +113,7 @@ living_room = {
 }
 
 outside = {
-  "name": "outside"
+    "name": "outside"
 }
 
 all_rooms = [game_room, bedroom_1, bedroom_2, living_room, outside]
@@ -116,8 +122,8 @@ all_doors = [door_a, door_b, door_c, door_d]
 
 # define which items/rooms are related
 
-object_relations = {
-    "game room": [couch, piano, door_a],
+object_relations_init = {
+    "game room": [couch, piano, door_a, snake],
     "living room": [dinning_table, door_c, door_d, safe, bookcase],
     "couch": [],
     "piano": [key_a],
@@ -136,7 +142,7 @@ object_relations = {
     "door d": [living_room, outside]
 }
 
-# define game state. Do not directly change this dict. 
+# define game state. Do not directly change this dict.
 # Instead, when a new game starts, make a copy of this
 # dict and use the copy to store gameplay state. This 
 # way you can replay the game multiple times.
@@ -144,8 +150,10 @@ object_relations = {
 INIT_GAME_STATE = {
     "current_room": game_room,
     "keys_collected": [],
-    "target_room": outside
+    "target_room": outside,
+    "is_the_game_over": False
 }
+
 
 def linebreak():
     """
@@ -153,13 +161,16 @@ def linebreak():
     """
     print("\n\n")
 
+
 def start_game():
     """
     Start the game
     """
-    print("You wake up on a couch and find yourself in a strange house with no windows which you have never been to before. You don't remember why you are here and what had happened before. You feel some unknown danger is approaching and you must get out of the house, NOW!")
+    print(
+        "You wake up on a couch and find yourself in a strange house with no windows which you have never been to before. You don't remember why you are here and what had happened before. You feel some unknown danger is approaching and you must get out of the house, NOW!")
     explore_room(game_state["current_room"])
     play_room(game_state["current_room"])
+
 
 def play_room(room):
     """
@@ -167,27 +178,30 @@ def play_room(room):
     If it is, the game will end with success. Otherwise, let player either 
     explore (list all items in this room) or examine an item found here.
     """
+
     game_state["current_room"] = room
-    if(game_state["current_room"] == game_state["target_room"]):
+    if (game_state["current_room"] == game_state["target_room"]):
         print("Congrats! You escaped the room!")
     else:
-        intended_action = input("What would you like to do? Type 'explore' or 'examine'?").strip()
+        intended_action = input("What would you like to do? Type 'explore' or 'examine'?").strip().lower()
         if intended_action == "explore":
             explore_room(room)
             play_room(room)
         elif intended_action == "examine":
-            examine_item(input("What would you like to examine?").strip())
+            examine_item(input("What would you like to examine?").strip().lower())
         else:
             print("Not sure what you mean. Type 'explore' or 'examine'.")
             play_room(room)
         linebreak()
+
 
 def explore_room(room):
     """
     Explore a room. List all items belonging to this room.
     """
     items = [i["name"] for i in object_relations[room["name"]]]
-    print("You explore the room. This is the " + room["name"] + ". You find " + ", ".join(items) +'\n')
+    print("You explore the room. This is the " + room["name"] + ". You find " + ", ".join(items) + '\n')
+
 
 def get_next_room_of_door(door, current_room):
     """
@@ -196,8 +210,9 @@ def get_next_room_of_door(door, current_room):
     """
     connected_rooms = object_relations[door["name"]]
     for room in connected_rooms:
-        if(not current_room == room):
+        if (not current_room == room):
             return room
+
 
 def examine_item(item_name):
     """
@@ -213,20 +228,34 @@ def examine_item(item_name):
     current_room = game_state["current_room"]
     next_room = ""
     output = None
-    
+
     for item in object_relations[current_room["name"]]:
+
         if(item["name"] == item_name):
             output = "You examine the " + item_name + ". "
             if(item["type"] == "door"):
+
                 have_key = False
                 for key in game_state["keys_collected"]:
-                    if(key["target"] == item):
+                    if (key["target"] == item):
                         have_key = True
-                if(have_key):
+                if (have_key):
                     output += "You unlock it with a key you have.\n"
                     next_room = get_next_room_of_door(item, current_room)
                 else:
                     output += "It is locked but you don't have the key."
+
+            elif (item["type"] == "deadly"):
+                print('''you're dead\n  
+             ____
+            / . .\\
+            \  ---<
+             \  /
+   __________/ /
+-=:___________/''')
+                game_over()
+
+
             elif(item["type"] == "safe"):
                 print (output)
                 output = ""
@@ -241,8 +270,9 @@ def examine_item(item_name):
                 else:
                     #if the code is not correct
                     output += "It is locked and the code is incorrect.\n"
+
             else:
-                if(item["name"] in object_relations and len(object_relations[item["name"]])>0):
+                if (item["name"] in object_relations and len(object_relations[item["name"]]) > 0):
                     item_found = object_relations[item["name"]].pop()
                     game_state["keys_collected"].append(item_found)
                     output += "You find " + item_found["name"] + ".\n"
@@ -251,16 +281,43 @@ def examine_item(item_name):
             print(output)
             break
 
-    if(output is None):
+    if (output is None):
         print("The item you requested is not found in the current room.")
-    
-    if(next_room and input("Do you want to go to the next room? Enter 'yes' or 'no'").strip() == 'yes'):
+    if (next_room and input("Do you want to go to the next room? Enter 'yes' or 'no'").strip().lower() == 'yes'):
         explore_room(next_room)
         play_room(next_room)
     else:
         play_room(current_room)
 
 
+def game_over():
+    answer = input("Do you want to play again? Enter 'yes' or 'no'").strip().lower()
+    if answer == 'yes':
+
+        '''
+        object_relations = object_relations_int.copy() 
+        is ambiguous, it could be referring to a global variable, or it could be creating a new local variable called 
+        "object_relations". In this case, Python defaults to assuming it is a local variable unless the global keyword 
+        has already been used.
+        '''
+
+        global object_relations
+        game_state['keys_collected'] = []
+        game_state['current_room'] = game_room
+        game_state['target_room'] = outside
+        object_relations = copy.deepcopy(object_relations_init)
+
+        start_game()
+
+    elif answer == 'no':
+        exit()
+    else:
+        print("that's not a valid answer")
+        game_over()
+
+
 game_state = INIT_GAME_STATE.copy()
+#A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.
+object_relations = copy.deepcopy(object_relations_init)
 
 start_game()
