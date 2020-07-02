@@ -158,6 +158,7 @@ def start_game():
     Start the game
     """
     print("You wake up on a couch and find yourself in a strange house with no windows which you have never been to before. You don't remember why you are here and what had happened before. You feel some unknown danger is approaching and you must get out of the house, NOW!")
+    explore_room(game_state["current_room"])
     play_room(game_state["current_room"])
 
 def play_room(room):
@@ -170,9 +171,9 @@ def play_room(room):
     if(game_state["current_room"] == game_state["target_room"]):
         print("Congrats! You escaped the room!")
     else:
-        explore_room(room)
         intended_action = input("What would you like to do? Type 'explore' or 'examine'?").strip()
         if intended_action == "explore":
+            explore_room(room)
             play_room(room)
         elif intended_action == "examine":
             examine_item(input("What would you like to examine?").strip())
@@ -222,7 +223,7 @@ def examine_item(item_name):
                     if(key["target"] == item):
                         have_key = True
                 if(have_key):
-                    output += "You unlock it with a key you have."
+                    output += "You unlock it with a key you have.\n"
                     next_room = get_next_room_of_door(item, current_room)
                 else:
                     output += "It is locked but you don't have the key."
@@ -230,9 +231,9 @@ def examine_item(item_name):
                 if(item["name"] in object_relations and len(object_relations[item["name"]])>0):
                     item_found = object_relations[item["name"]].pop()
                     game_state["keys_collected"].append(item_found)
-                    output += "You find " + item_found["name"] + "."
+                    output += "You find " + item_found["name"] + ".\n"
                 else:
-                    output += "There isn't anything interesting about it."
+                    output += "There isn't anything interesting about it.\n"
             print(output)
             break
 
@@ -240,6 +241,7 @@ def examine_item(item_name):
         print("The item you requested is not found in the current room.")
     
     if(next_room and input("Do you want to go to the next room? Enter 'yes' or 'no'").strip() == 'yes'):
+        explore_room(next_room)
         play_room(next_room)
     else:
         play_room(current_room)
