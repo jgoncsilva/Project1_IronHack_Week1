@@ -3,16 +3,19 @@
 couch = {
     "name": "couch",
     "type": "furniture",
+    "description": "I think you've had enough rest! So much so that you don\t even know where you are. Keep moving"
 }
 
 dresser = {
     "name": "dresser",
     "type": "furniture",
+    "description": "Uh! It looks like there's more than underwear here"
 }
 
 double_bed = {
     "name": "double bed",
     "type": "furniture",
+    "description": "A lot of places to die. Shure you wanna take a nap?"
 }
 
 dinning_table = {
@@ -35,6 +38,7 @@ bookcase = {
 piano = {
     "name": "piano",
     "type": "furniture",
+    "description": "Sounds like a Key! Keep going"
 }
 
 queen_bed = {
@@ -42,6 +46,7 @@ queen_bed = {
     "type": "furniture",
     "description": "So Sweet by beauty queen. But there's no time to sleep"
 }
+
 
 # Main Doors
 door_a = {
@@ -63,6 +68,13 @@ door_d = {
     "name": "door d",
     "type": "door",
 }
+
+door_e = {
+    "name": "door e",
+    "type": "trap",
+    "description": "OK! Looks like you out? Ops! Looks like you're in the game room again"
+}
+
 # Main Keys
 key_a = {
     "name": "key for door a",

@@ -1,10 +1,13 @@
 import copy
+import pandas as pd
+from datetime import datetime
+from collections import OrderedDict
 from dictionaries import *
 
 # define which items/rooms are related
 
 object_relations_init = {
-    "game room": [couch, piano, door_a, snake],
+    "game room": [couch, piano, door_a, door_e, snake],
     "living room": [dinning_table, door_c, door_d, safe, bookcase],
     "couch": [],
     "piano": [key_a],
@@ -13,10 +16,10 @@ object_relations_init = {
     "safe": [key_d],
     "bookcase": [],
     "bedroom 1": [queen_bed, door_a, door_b, door_c],
-    "bedroom 2": [dresser, double_bed, door_b],
+    "bedroom 2": [dresser, double_bed, door_b, door_e],
     "double bed": [key_c],
     "dresser": [],
-    "queen bed" : [key_b],
+    "queen bed": [key_b],
     "door a": [game_room, bedroom_1],
     "door b": [bedroom_1, bedroom_2],
     "door c": [bedroom_1, living_room],
@@ -43,12 +46,24 @@ def linebreak():
     print("\n\n")
 
 
+# Before starts the game
+
+users = OrderedDict()
+
+ #Before starts the game
+
+start_time = 0
+
 def start_game():
+    global start_time
+    global player_name
+    start_time = datetime.now()
+    player_name = input("So whats my name? wrong answers only: ").strip()
+    print(player_name)
     """
     Start the game
     """
-    print(
-        "You wake up on a couch and find yourself in a strange house with no windows which you have never been to before. You don't remember why you are here and what had happened before. You feel some unknown danger is approaching and you must get out of the house, NOW!")
+    print("You wake up on a couch and find yourself in a strange house with no windows which you have never been to before. You don't remember why you are here and what had happened before. You feel some unknown danger is approaching and you must get out of the house, NOW!")
     explore_room(game_state["current_room"])
     play_room(game_state["current_room"])
 
@@ -62,7 +77,7 @@ def play_room(room):
 
     game_state["current_room"] = room
     if (game_state["current_room"] == game_state["target_room"]):
-        print("Congrats! You escaped the room!")
+        print("Congrats! You can sing: 'Oh AAAAA ohhhhh I'm still alive")
     else:
         intended_action = input("What would you like to do? Type 'explore' or 'examine'?").strip().lower()
         if intended_action == "explore":
@@ -112,9 +127,9 @@ def examine_item(item_name):
 
     for item in object_relations[current_room["name"]]:
 
-        if(item["name"] == item_name):
+        if (item["name"] == item_name):
             output = "You examine the " + item_name + ". "
-            if(item["type"] == "door"):
+            if (item["type"] == "door"):
 
                 have_key = False
                 for key in game_state["keys_collected"]:
@@ -137,19 +152,19 @@ def examine_item(item_name):
                 game_over()
 
 
-            elif(item["type"] == "safe"):
-                print (output)
+            elif (item["type"] == "safe"):
+                print(output)
                 output = ""
-                if(input("Introduce the code to the safe ***: ").lower() == 'sos'):
-                    #if the code is correct
-                    if(item["name"] in object_relations and len(object_relations[item["name"]])>0):                    
+                if (input("Introduce the code to the safe ***: ").lower() == 'sos'):
+                    # if the code is correct
+                    if (item["name"] in object_relations and len(object_relations[item["name"]]) > 0):
                         item_found = object_relations[item["name"]].pop()
                         game_state["keys_collected"].append(item_found)
                         output = "You open the safe and find " + item_found["name"] + " inside.\n"
                     else:
                         output += "There isn't anything interesting inside.\n"
                 else:
-                    #if the code is not correct
+                    # if the code is not correct
                     output += "It is locked and the code is incorrect.\n"
 
             else:
@@ -172,6 +187,20 @@ def examine_item(item_name):
 
 
 def game_over():
+    global users
+    global player_name
+    # After finish the game
+    end_time = datetime.now()
+    # Total time
+    total_time = (end_time - start_time).total_seconds()
+    if player_name in users.keys():
+        users[player_name] = min(total_time, users[player_name])
+    else:
+        users[player_name] = total_time
+    #for k, v in users.items():
+       #print(k, v)
+    pandaseries = pd.Series(users)
+    print(pandaseries.sort_values(ascending=False))
     answer = input("Do you want to play again? Enter 'yes' or 'no'").strip().lower()
     if answer == 'yes':
 
@@ -198,7 +227,16 @@ def game_over():
 
 
 game_state = INIT_GAME_STATE.copy()
-#A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.
+# A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.
 object_relations = copy.deepcopy(object_relations_init)
 
 start_game()
+
+'''dict_points = {'users': [],
+ 'points': []
+ }
+'''
+
+
+
+
