@@ -101,6 +101,11 @@ bedroom_2 = {
     "type": "room",
 }
 
+snake = {
+    "name": "snake",
+    "type": "deadly"
+}
+
 living_room = {
     "name": "living room",
     "type": "room",
@@ -117,7 +122,7 @@ all_doors = [door_a, door_b, door_c, door_d]
 # define which items/rooms are related
 
 object_relations = {
-    "game room": [couch, piano, door_a],
+    "game room": [couch, piano, door_a, snake],
     "living room": [dinning_table, door_c, door_d, safe, bookcase],
     "couch": [],
     "piano": [key_a],
@@ -144,7 +149,8 @@ object_relations = {
 INIT_GAME_STATE = {
     "current_room": game_room,
     "keys_collected": [],
-    "target_room": outside
+    "target_room": outside,
+    "is_the_game_over": False
 }
 
 def linebreak():
@@ -227,6 +233,16 @@ def examine_item(item_name):
                     next_room = get_next_room_of_door(item, current_room)
                 else:
                     output += "It is locked but you don't have the key."
+            elif (item["type"] == "deadly"):
+                print('''you're dead\n  
+             ____
+            / . .\\
+            \  ---<
+             \  /
+   __________/ /
+-=:___________/''')
+                game_over()
+
             else:
                 if(item["name"] in object_relations and len(object_relations[item["name"]])>0):
                     item_found = object_relations[item["name"]].pop()
@@ -239,13 +255,26 @@ def examine_item(item_name):
 
     if(output is None):
         print("The item you requested is not found in the current room.")
-    
+    if game_state["is_the_game_over"] == True:
+        exit()
     if(next_room and input("Do you want to go to the next room? Enter 'yes' or 'no'").strip() == 'yes'):
         explore_room(next_room)
         play_room(next_room)
     else:
         play_room(current_room)
 
+def game_over():
+
+    answer = input("Do you want to play again? Enter 'yes' or 'no'").strip()
+    if answer == 'yes':
+        game_state = INIT_GAME_STATE.copy()
+        start_game()
+    elif answer == 'no':
+        game_state["is_the_game_over"] = True
+
+    else:
+        print("that's not a valid answer")
+        game_over()
 
 game_state = INIT_GAME_STATE.copy()
 
