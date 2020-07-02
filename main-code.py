@@ -23,7 +23,7 @@ dinning_table = {
 
 safe = {
     "name": "safe",
-    "type": "furniture",
+    "type": "safe",
 }
 
 bookcase = {
@@ -129,13 +129,13 @@ object_relations_init = {
     "piano": [key_a],
     "outside": [door_d],
     "dining table": [],
-    "safe": [],
+    "safe": [key_d],
     "bookcase": [],
     "bedroom 1": [queen_bed, door_a, door_b, door_c],
     "bedroom 2": [dresser, double_bed, door_b],
     "double bed": [key_c],
-    "dresser": [key_d],
-    "queen bed": [key_b],
+    "dresser": [],
+    "queen bed" : [key_b],
     "door a": [game_room, bedroom_1],
     "door b": [bedroom_1, bedroom_2],
     "door c": [bedroom_1, living_room],
@@ -230,9 +230,11 @@ def examine_item(item_name):
     output = None
 
     for item in object_relations[current_room["name"]]:
-        if (item["name"] == item_name):
-            output = "You examine " + item_name + ". "
-            if (item["type"] == "door"):
+
+        if(item["name"] == item_name):
+            output = "You examine the " + item_name + ". "
+            if(item["type"] == "door"):
+
                 have_key = False
                 for key in game_state["keys_collected"]:
                     if (key["target"] == item):
@@ -242,6 +244,7 @@ def examine_item(item_name):
                     next_room = get_next_room_of_door(item, current_room)
                 else:
                     output += "It is locked but you don't have the key."
+
             elif (item["type"] == "deadly"):
                 print('''you're dead\n  
              ____
@@ -251,6 +254,22 @@ def examine_item(item_name):
    __________/ /
 -=:___________/''')
                 game_over()
+
+
+            elif(item["type"] == "safe"):
+                print (output)
+                output = ""
+                if(input("Introduce the code to the safe ***: ").lower() == 'sos'):
+                    #if the code is correct
+                    if(item["name"] in object_relations and len(object_relations[item["name"]])>0):                    
+                        item_found = object_relations[item["name"]].pop()
+                        game_state["keys_collected"].append(item_found)
+                        output = "You open the safe and find " + item_found["name"] + " inside.\n"
+                    else:
+                        output += "There isn't anything interesting inside.\n"
+                else:
+                    #if the code is not correct
+                    output += "It is locked and the code is incorrect.\n"
 
             else:
                 if (item["name"] in object_relations and len(object_relations[item["name"]]) > 0):
