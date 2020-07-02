@@ -1,4 +1,7 @@
 import copy
+import pandas as pd
+from datetime import datetime
+from collections import OrderedDict
 from dictionaries import *
 
 # define which items/rooms are related
@@ -13,14 +16,15 @@ object_relations_init = {
     "safe": [key_d],
     "bookcase": [],
     "bedroom 1": [queen_bed, door_a, door_b, door_c],
-    "bedroom 2": [dresser, double_bed, door_b],
+    "bedroom 2": [dresser, double_bed, door_b, door_e],
     "double bed": [key_c],
     "dresser": [],
-    "queen bed" : [key_b],
+    "queen bed": [key_b],
     "door a": [game_room, bedroom_1],
     "door b": [bedroom_1, bedroom_2],
     "door c": [bedroom_1, living_room],
-    "door d": [living_room, outside]
+    "door d": [living_room, outside],
+    "door e": [bedroom_2]
 }
 
 # define game state. Do not directly change this dict.
@@ -42,12 +46,25 @@ def linebreak():
     print("\n\n")
 
 
+# Before starts the game
+
+users_deaths = OrderedDict()
+users_wins = OrderedDict()
+
+ #Before starts the game
+
+start_time = 0
+
 def start_game():
+    global start_time
+    global player_name
+    start_time = datetime.now()
+    player_name = input("So whats my name? wrong answers only: ").strip()
+    print(player_name)
     """
     Start the game
     """
-    print(
-        "You wake up on a couch and find yourself in a strange house with no windows which you have never been to before. You don't remember why you are here and what had happened before. You feel some unknown danger is approaching and you must get out of the house, NOW!")
+    print("You wake up on a couch and find yourself in a strange house with no windows which you have never been to before. You don't remember why you are here and what had happened before. You feel some unknown danger is approaching and you must get out of the house, NOW!")
     explore_room(game_state["current_room"])
     play_room(game_state["current_room"])
 
@@ -61,7 +78,29 @@ def play_room(room):
 
     game_state["current_room"] = room
     if (game_state["current_room"] == game_state["target_room"]):
-        print("Congrats! You escaped the room!")
+        print("Congrats! You can sing: 'Oh AAAAA ohhhhh I'm still alive\n")
+
+        # Total time
+        end_time = datetime.now()
+        total_time = (end_time - start_time).total_seconds()
+
+        if player_name in users_wins.keys():
+            users_wins[player_name] = min(total_time, users_wins[player_name])
+        else:
+            users_wins[player_name] = total_time
+
+        pandaseries = pd.Series(users_wins)
+        print(pandaseries.sort_values(ascending=True)[0:3])
+        
+        answer = input("Do you want to play again? Enter 'yes' or 'no'").strip().lower()
+        if answer == 'yes':
+            global object_relations
+            game_state['keys_collected'] = []
+            game_state['current_room'] = game_room
+            game_state['target_room'] = outside
+            object_relations = copy.deepcopy(object_relations_init)
+            start_game()
+
     else:
         intended_action = input("What would you like to do? Type 'explore' or 'examine'?").strip().lower()
         if intended_action == "explore":
@@ -111,9 +150,9 @@ def examine_item(item_name):
 
     for item in object_relations[current_room["name"]]:
 
-        if(item["name"] == item_name):
+        if (item["name"] == item_name):
             output = "You examine the " + item_name + ". "
-            if(item["type"] == "door"):
+            if (item["type"] == "door"):
 
                 have_key = False
                 for key in game_state["keys_collected"]:
@@ -132,23 +171,27 @@ def examine_item(item_name):
             \  ---<
              \  /
    __________/ /
--=:___________/''')
+-=:___________/\n''')
                 game_over()
 
+            elif (item["type"] == 'trap'):
+                next_room = game_room
+                explore_room(next_room)
+                play_room(next_room)
 
-            elif(item["type"] == "safe"):
-                print (output)
+            elif (item["type"] == "safe"):
+                print(output)
                 output = ""
-                if(input("Introduce the code to the safe ***: ").strip().lower() == 'sos'):
-                    #if the code is correct
-                    if(item["name"] in object_relations and len(object_relations[item["name"]])>0):                    
+                if (input("Introduce the code to the safe ***: ").lower() == 'sos'):
+                    # if the code is correct
+                    if (item["name"] in object_relations and len(object_relations[item["name"]]) > 0):
                         item_found = object_relations[item["name"]].pop()
                         game_state["keys_collected"].append(item_found)
                         output = "You open the safe and find " + item_found["name"] + " inside.\n"
                     else:
                         output += "There isn't anything interesting inside.\n"
                 else:
-                    #if the code is not correct
+                    # if the code is not correct
                     output += "It is locked and the code is incorrect.\n"
 
             elif(item["type"] == "bookcase"):
@@ -173,14 +216,30 @@ def examine_item(item_name):
 
     if (output is None):
         print("The item you requested is not found in the current room.")
-    if (next_room and input("Do you want to go to the next room? Enter 'yes' or 'no'").strip().lower() == 'yes'):
+    if next_room and input("Do you want to go to the next room? Enter 'yes' or 'no'").strip().lower() == 'yes':
         explore_room(next_room)
         play_room(next_room)
     else:
         play_room(current_room)
 
 
+
 def game_over():
+    global users_deaths
+    global player_name
+
+    # Total time
+    end_time = datetime.now()
+    total_time = (end_time - start_time).total_seconds()
+
+    if player_name in users_deaths.keys():
+        users_deaths[player_name] = min(total_time, users_deaths[player_name])
+    else:
+        users_deaths[player_name] = total_time
+
+    pandaseries = pd.Series(users_deaths)
+    print(pandaseries.sort_values(ascending=True)[0:3])
+
     answer = input("Do you want to play again? Enter 'yes' or 'no'").strip().lower()
     if answer == 'yes':
 
@@ -205,9 +264,14 @@ def game_over():
         print("that's not a valid answer")
         game_over()
 
-
-game_state = INIT_GAME_STATE.copy()
-#A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.
+global game_state
+game_state = copy.deepcopy(INIT_GAME_STATE)
+# A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.
 object_relations = copy.deepcopy(object_relations_init)
 
 start_game()
+
+
+
+
+
