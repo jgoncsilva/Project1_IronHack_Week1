@@ -183,12 +183,12 @@ def play_room(room):
     if (game_state["current_room"] == game_state["target_room"]):
         print("Congrats! You escaped the room!")
     else:
-        intended_action = input("What would you like to do? Type 'explore' or 'examine'?").strip()
+        intended_action = input("What would you like to do? Type 'explore' or 'examine'?").strip().lower()
         if intended_action == "explore":
             explore_room(room)
             play_room(room)
         elif intended_action == "examine":
-            examine_item(input("What would you like to examine?").strip())
+            examine_item(input("What would you like to examine?").strip().lower())
         else:
             print("Not sure what you mean. Type 'explore' or 'examine'.")
             play_room(room)
@@ -264,7 +264,7 @@ def examine_item(item_name):
 
     if (output is None):
         print("The item you requested is not found in the current room.")
-    if (next_room and input("Do you want to go to the next room? Enter 'yes' or 'no'").strip() == 'yes'):
+    if (next_room and input("Do you want to go to the next room? Enter 'yes' or 'no'").strip().lower() == 'yes'):
         explore_room(next_room)
         play_room(next_room)
     else:
@@ -272,7 +272,7 @@ def examine_item(item_name):
 
 
 def game_over():
-    answer = input("Do you want to play again? Enter 'yes' or 'no'").strip()
+    answer = input("Do you want to play again? Enter 'yes' or 'no'").strip().lower()
     if answer == 'yes':
 
         '''
