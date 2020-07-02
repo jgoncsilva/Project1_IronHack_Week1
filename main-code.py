@@ -158,10 +158,11 @@ def play_room(room):
     if(game_state["current_room"] == game_state["target_room"]):
         print("Congrats! You escaped the room!")
     else:
-        print("You are now in " + room["name"] + "\n")
+        #print("\n" + "You are now in " + room["name"])
+        explore_room(room)
         intended_action = input("What would you like to do? Type 'explore' or 'examine'?").strip()
         if intended_action == "explore":
-            explore_room(room)
+            #explore_room(room)
             play_room(room)
         elif intended_action == "examine":
             examine_item(input("What would you like to examine?").strip())
@@ -175,7 +176,7 @@ def explore_room(room):
     Explore a room. List all items belonging to this room.
     """
     items = [i["name"] for i in object_relations[room["name"]]]
-    print("You explore the room. This is " + room["name"] + ". You find " + ", ".join(items))
+    print("You explore the room. This is the " + room["name"] + ". You find " + ", ".join(items) +'\n')
 
 def get_next_room_of_door(door, current_room):
     """
