@@ -20,6 +20,16 @@ dinning_table = {
     "type": "furniture",
 }
 
+safe = {
+    "name": "safe",
+    "type": "furniture",
+}
+
+bookcase = {
+    "name": "bookcase",
+    "type": "furniture",
+}
+
 piano = {
     "name": "piano",
     "type": "furniture",
@@ -108,11 +118,13 @@ all_doors = [door_a, door_b, door_c, door_d]
 
 object_relations = {
     "game room": [couch, piano, door_a],
-    "living room": [dinning_table, door_c, door_d],
+    "living room": [dinning_table, door_c, door_d, safe, bookcase],
     "couch": [],
     "piano": [key_a],
     "outside": [door_d],
     "dining table": [],
+    "safe": [],
+    "bookcase": [],
     "bedroom 1": [queen_bed, door_a, door_b, door_c],
     "bedroom 2": [dresser, double_bed, door_b],
     "double bed": [key_c],
@@ -158,11 +170,9 @@ def play_room(room):
     if(game_state["current_room"] == game_state["target_room"]):
         print("Congrats! You escaped the room!")
     else:
-        #print("\n" + "You are now in " + room["name"])
         explore_room(room)
         intended_action = input("What would you like to do? Type 'explore' or 'examine'?").strip()
         if intended_action == "explore":
-            #explore_room(room)
             play_room(room)
         elif intended_action == "examine":
             examine_item(input("What would you like to examine?").strip())
