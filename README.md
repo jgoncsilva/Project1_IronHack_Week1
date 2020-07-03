@@ -35,7 +35,7 @@ The game design is simple as it runs on the terminal. However, we made sure to a
 
 ## Important Files
 ### MVP : [Link](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/Final-Project/main-code(mvp).py)
-### Final Project :[Link](hhttps://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/Final-Project/main-code.py)
+### Final Project :[Link](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/Final-Project/main-code.py)
 ### ipynb Required :[Link](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/Final-Project/main.ipynb)
 ### Presentation : 
   
