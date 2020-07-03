@@ -1,8 +1,10 @@
 <img src="https://bit.ly/2VnXWr2" alt="Ironhack Logo" width="100"/>
 
-# Project1 IronHack_Week1
+# Project 1 - Week1 
+## (IronHack Data Analytics Bootcamp Lisbon June 2020)
 
-### Code made in colab mode by 
+### Made by  Alt-J³ <a href="https://picasion.com/"><img src="https://i.picasion.com/pic90/8007a9e6a6b5d89663d3648244827b53.gif" width="100" height="100" border="0" alt="https://picasion.com/" /></a><br /><a href="https://picasion.com/">
+  
 #### 1) [Jhonatas Gonçalo](https://github.com/jgoncsilva)
 #### 2) [Jorge Marques](https://github.com/JMark1991)
 #### 3) [Joan Concha](https://github.com/JoanRBC)
@@ -13,13 +15,13 @@
 The game design is simple as it runs on the terminal. However, we made sure to add Morse code, and a figure made by symbols (eg |, \, -) to be displayed during the game experience, which in our opinion should not (in this case) escape from the same screen, as it is a game that needs concentration to be completed as quickly as possible.
 
 ### Game Map
-[You can find the map here](https://drive.google.com/drive/u/1/my-drive)
+![find the map here](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/Tests_Changes_Version/escape-room-plan%20(1).jpg)
 
 ### Game Narratives
   The narratives of this project have been enhanced with descriptions for the objects to make interaction with the user better.
   The code verified the quality of the information available at the beginning of the game.
   The phrases used (with humor) were intended to make the experience more fun, since the essence of the game is to be trapped and unable to escape, so we seek to make the process of leaving funnie.
-  You can find the new dictionary with new objects in general [here](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/timer/dictionaries.py)
+  #### You can find the new dictionary with new objects in general [here](hhttps://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/dictionaries.py)
   
 ### Game Room
   The room has been improved with new objects including an animal, a safe with a password that requires deduction and reading of Morse code, trap door and a bookcase.
@@ -34,7 +36,8 @@ The game design is simple as it runs on the terminal. However, we made sure to a
 ## Important Files
 ### MVP : [Link](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/main-code(mvp).py)
 ### Final Project :[Link](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/timer/main-code.py)
-### ipynb Required :[Link]
+### ipynb Required :[Link](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/Final-Project/main.ipynb)
+### Presentation : 
   
 ## IRONHACK DESCRIPTION 
   The link to the main repository (by Ironhack Lisbon) can be found [here](https://github.com/ta-data-lis/python-project)
