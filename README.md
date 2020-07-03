@@ -21,7 +21,7 @@ The game design is simple as it runs on the terminal. However, we made sure to a
   The narratives of this project have been enhanced with descriptions for the objects to make interaction with the user better.
   The code verified the quality of the information available at the beginning of the game.
   The phrases used (with humor) were intended to make the experience more fun, since the essence of the game is to be trapped and unable to escape, so we seek to make the process of leaving funnie.
-  #### You can find the new dictionary with new objects in general [here](hhttps://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/dictionaries.py)
+  #### You can find the new dictionary with new objects in general [here](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/Final-Project/dictionaries.py)
   
 ### Game Room
   The room has been improved with new objects including an animal, a safe with a password that requires deduction and reading of Morse code, trap door and a bookcase.
@@ -34,8 +34,8 @@ The game design is simple as it runs on the terminal. However, we made sure to a
 [dictionaries](https://pypi.org/project/dictionaries/) 
 
 ## Important Files
-### MVP : [Link](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/main-code(mvp).py)
-### Final Project :[Link](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/timer/main-code.py)
+### MVP : [Link](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/Final-Project/main-code(mvp).py)
+### Final Project :[Link](hhttps://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/Final-Project/main-code.py)
 ### ipynb Required :[Link](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/Final-Project/main.ipynb)
 ### Presentation : 
   
