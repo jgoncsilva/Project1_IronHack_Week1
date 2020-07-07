@@ -37,7 +37,7 @@ The game design is simple as it runs on the terminal. However, we made sure to a
 ### MVP : [Link](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/Final-Project/main-code(mvp).py)
 ### Final Project :[Link](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/Final-Project/main-code.py)
 ### ipynb Required :[Link](https://github.com/jgoncsilva/Project1_IronHack_Week1/blob/master/Final-Project/main.ipynb)
-### Presentation : 
+### Presentation : [Link](https://github.com/jgoncsilva/Scape-Room-Game---IronHack-W1/blob/master/Week%201%20project.pdf)
   
 ## IRONHACK DESCRIPTION 
   The link to the main repository (by Ironhack Lisbon) can be found [here](https://github.com/ta-data-lis/python-project)
